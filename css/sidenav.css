@@ -1,0 +1,119 @@
+/*Google Fonts - Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+/* @import "style.css"; */
+:root{
+    --main-bg-color:#D8D8D8;
+    --border-color:#B8B8B8;
+}
+*{
+    background-color:var(--main-bg-color) ; 
+    margin: 0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #4d4d4e;
+    overflow-x: hidden;
+    
+
+}
+a{
+    text-decoration: none;
+}
+.wrapper .sidenav{
+    border-right: 4px solid var(--border-color);
+    /* background-color: pink; */
+    position:fixed;
+    left: 0;
+    top: 0 ;
+    width: 20vw;
+    height: 100vh;
+}
+
+.logo{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 55px 0px 55px 0px;
+    
+    
+}
+.freddy-logo{
+    width: 45%;
+}
+
+.wrapper .sidenav ul li{
+    list-style: none;
+    margin-left: 16%;
+    padding: 15px;
+}
+.wrapper .main-content{
+    /* background-color: pink; */
+    width: 80vw;
+    margin-left:20vw ;
+}
+section{
+height: 100vh;
+padding: 30px;
+}
+.smallcard-main{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+
+}
+.smallcard{
+    border: 2px solid var(--border-color);
+    padding: 10px;
+    width: 25%;
+    margin-bottom: 40px;
+    
+}
+.middle-section .heading{
+    display: flex;
+    flex-direction: row;
+    width:70%;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.toggle{
+    position: relative;
+    width: 50px;
+    height: 20px;
+    border-radius: 35px;
+    border: 3px solid #B8B8B8;
+    cursor: pointer;
+    overflow-y: hidden;
+    transition: 0.3s;
+
+    
+}
+
+.toggle .toggle-button{
+    position:absolute;
+    top: -2px;
+    left: 0px;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #B8B8B8;
+    transition: 0.3s;
+    
+}
+.toggle.active .toggle-button{
+    left: 25px;
+}
+
+.show{
+    background-color: white;
+    margin-bottom: 40px;
+}
+.disabled{
+    display: none;
+}
+
+.bestsellers-table{
+    width: 90%;
+    border: 4px solid #B8B8B8;
+}

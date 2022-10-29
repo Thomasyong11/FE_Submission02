@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="headerTemplate">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title id="head-title">..</title>
+    <link rel="icon" type="image/svg" href="../assets/Freddys_Logo.svg" />
+    <!--CSS-->
+    <link rel="stylesheet" href="css/sidenav.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!--side navigation-->
+      <div class="sidenav">
+        <div class="logo">
+          <img class="freddy-logo" src="assets/Freddys_Logo.svg" />
+        </div>
+
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#orders">Orders</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+      <!--Right side/ main content-->
+      <div class="main-content">
+        <!---Dashboard-->
+        <section id="dashboard">
+          <div class="dashboard-main">
+            <h1>Dashboard</h1>
+            <div class="smallcard-main">
+              <summary-card class="smallcard" period="Today"></summary-card>
+              <summary-card class="smallcard" period="Last Year"></summary-card>
+              <summary-card
+                class="smallcard"
+                period="Last Month"
+              ></summary-card>
+            </div>
+          </div>
+          <!--Revenue-->
+          <div class="middle-section">
+            <div class="heading">
+              <h1>Revenue (Last 7days)</h1>
+              <div class="toggle" onclick="Animatedtoggle()">
+                <div class="toggle-button"></div>
+              </div>
+            </div>
+            <div class="show">7 days</div>
+            <div class="disabled">12 months</div>
+          </div>
+          <!--Bestsellers-->
+          <div class="bestsellers-main">
+            <h1>Bestsellers</h1>
+            <div class="bestsellers-table"></div>
+          </div>
+        </section>
+        <section id="orders">
+          <div>
+            ads
+            <summary-card period="Today"></summary-card>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="components/summaryCards.js"></script>
+    <script src="components/main.js"></script>
+  </body>
+</html>
+
+<!-- function load_home(){
+  document.getElementById("dashboard").innerHTML =
+    '<object type="text/html" data="index.html" ></object>';
+  } -->
