@@ -1,3 +1,4 @@
+//webcomponent for summary cards
 class SummaryCard extends HTMLElement {
   constructor() {
     super();

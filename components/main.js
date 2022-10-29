@@ -1,5 +1,7 @@
+//WebPage title
 document.title = "Freddy's Artisanal Halloween Candy Shop";
 
+//Toggle switch for revenue
 let toggle = document.querySelector(".toggle");
 let show = document.querySelector(".show");
 let disabled = document.querySelector(".disabled");
@@ -19,30 +21,27 @@ function Animatedtoggle() {
   }
 }
 
-// class Login extends HTMLElement {
-//   connectedCallback() {
-//     this.innerHTML = `
-//         <div class="form login">
-//         <div class="form-content">
-//         <header class="header-main">
-//           <text class="header-text"
-//             >Freddy's Artisanal Halloween Candy Shop</text
-//           >
-//           <img class="freddy-logo" src="assets/Freddys_Logo.svg" />
-//         </header>
-//         <form action="#">
-//           <div class="field input-field">
-//             <input type="text" placeholder="username" class="input" />
-//           </div>
-//           <div class="field input-field">
-//             <input type="password" placeholder="********" class="password" />
-//           </div>
-//           <div class="field button-field">
-//             <button>Login</button>
-//           </div>
-//         </form>
-//       </div>`;
-//   }
-// }
+//Best sellers table
+//dummy data
 
-// customElements.define("app-login", Login);
+let itemData = [
+  { product: "rice", price: 100, unitsold: 20, revenue: 2000 },
+  { product: "salt", price: 100, unitsold: 20, revenue: 2000 },
+  { product: "pepper", price: 100, unitsold: 20, revenue: 2000 },
+  { product: "kenkey", price: 100, unitsold: 20, revenue: 2000 },
+];
+
+//in order to set innerHtml property for the tablebody i used the window onload callback function
+window.onload = () => {
+  loadTableData(itemData);
+};
+
+function loadTableData(itemData) {
+  const tableBody = document.getElementById("tableData");
+  let dataHtml = "";
+  for (let item of itemData) {
+    dataHtml += `<tr><td>${item.product}</td><td>${item.price}</td><td>${item.unitsold}</td><td>${item.revenue}</td></tr>`;
+  }
+  //   console.log(dataHtml);
+  tableBody.innerHTML = dataHtml;
+}
