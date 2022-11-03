@@ -114,11 +114,12 @@ padding: 30px;
 }
 
 .bestsellers-table{
-    width: 90%;
-    border: 4px solid #B8B8B8;
+    width: 95%;
+    border: 2px solid #B8B8B8
 }
 table{
     width: 100%;
+    margin: 5px;
    
 }
 
@@ -127,13 +128,55 @@ thead tr{
     
 }
 th {
-    font-size: small;
-    padding-bottom: 10px;
+    font-size: large;
+    padding-bottom: 15px;
+    justify-content: space-between;
 }
 tbody tr{
+    padding-bottom: 10px;
 }
 td{
     font-weight: bold;
     padding-bottom: 10px;
     
+    
+}
+
+.order-header{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 96%;
+    margin-left: 5px;
+}
+
+.orders-table{
+    width: 95%;
+    border: 2px solid #B8B8B8;
+    padding: 10px;
+   
+}
+.fa-search {
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+.search-box{
+    border: 2px solid black;
+    margin-right: 5px;
+}
+.pagination{
+    display:flex ;
+    margin-left: 5px;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+    
+}
+.fa-play{
+margin-left: 2px;
+size:1rem;
+cursor: pointer;
+}
+.processing{
+    color: red;
 }

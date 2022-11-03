@@ -24,24 +24,24 @@ function Animatedtoggle() {
 //Best sellers table
 //dummy data
 
-let itemData = [
-  { product: "rice", price: 100, unitsold: 20, revenue: 2000 },
-  { product: "salt", price: 100, unitsold: 20, revenue: 2000 },
-  { product: "pepper", price: 100, unitsold: 20, revenue: 2000 },
-  { product: "kenkey", price: 100, unitsold: 20, revenue: 2000 },
-];
+// let itemData = [
+//   { product: "rice", price: 100, unitsold: 20, revenue: 2000 },
+//   { product: "salt", price: 100, unitsold: 20, revenue: 2000 },
+//   { product: "pepper", price: 100, unitsold: 20, revenue: 2000 },
+//   { product: "kenkey", price: 100, unitsold: 20, revenue: 2000 },
+// ];
 
-//in order to set innerHtml property for the tablebody i used the window onload callback function
-window.onload = () => {
-  loadTableData(itemData);
-};
+// //in order to set innerHtml property for the tablebody i used the window onload callback function
+// window.onload = () => {
+//   loadTableData(itemData);
+// };
 
-function loadTableData(itemData) {
-  const tableBody = document.getElementById("tableData");
-  let dataHtml = "";
-  for (let item of itemData) {
-    dataHtml += `<tr><td>${item.product}</td><td>${item.price}</td><td>${item.unitsold}</td><td>${item.revenue}</td></tr>`;
-  }
-  //   console.log(dataHtml);
-  tableBody.innerHTML = dataHtml;
-}
+// function loadTableData(itemData) {
+//   const tableBody = document.getElementById("tableData");
+//   let dataHtml = "";
+//   for (let item of itemData) {
+//     dataHtml += `<tr><td>${item.product}</td><td>${item.price}</td><td>${item.unitsold}</td><td>${item.revenue}</td></tr>`;
+//   }
+//   //   console.log(dataHtml);
+//   tableBody.innerHTML = dataHtml;
+// }

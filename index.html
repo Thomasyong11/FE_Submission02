@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="components/main.js"></script>
+
     <title id="head-title">..</title>
     <link rel="icon" type="image/svg" href="../assets/Freddys_Logo.svg" />
     <!--CSS-->
@@ -20,19 +20,33 @@
             >
             <img class="freddy-logo" src="assets/Freddys_Logo.svg" />
           </header>
-          <form action="#">
+          <form id="form" method="post" class="loginForm">
             <div class="field input-field">
-              <input type="text" placeholder="username" class="input" />
+              <input
+                type="text"
+                id="username"
+                placeholder="username"
+                class="input"
+              />
+              <span class="error-message"></span>
             </div>
             <div class="field input-field">
-              <input type="password" placeholder="********" class="password" />
+              <input
+                type="password"
+                id="password"
+                placeholder="********"
+                class="password"
+              />
+              <span class="error-message"></span>
             </div>
             <div class="field button-field">
-              <button>Login</button>
+              <button onclick="login(event)">Login</button>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <script src="components/main.js"></script>
+    <script src="components/controller.js"></script>
   </body>
 </html>
