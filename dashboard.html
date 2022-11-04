@@ -8,12 +8,12 @@
     <title id="head-title">..</title>
     <link rel="icon" type="image/svg" href="../assets/Freddys_Logo.svg" />
     <!--CSS-->
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="css/sidenav.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
   </head>
   <body onload="dashboard()">
     <div class="wrapper">
@@ -41,29 +41,35 @@
               <summary-card
                 class="smallcard"
                 period="Today"
-                amount="2000"
+                amount="1456"
+                orders="9"
               ></summary-card>
               <summary-card
                 class="smallcard"
-                period="Last Year"
-                amount="2000"
+                period="Last Week"
+                amount="34k"
+                orders="120"
               ></summary-card>
-              <summary-card
-                class="smallcard"
-                period="Last Month"
-              ></summary-card>
+              <div id="lastyr" class="smallcard"></div>
             </div>
           </div>
           <!--Revenue-->
           <div class="middle-section">
             <div class="heading">
-              <h1>Revenue (Last 7days)</h1>
+              <h1>
+                Revenue (Last <span id="days"> 7 </span>
+                <span id="period"> days</span> )
+              </h1>
               <div class="toggle" onclick="Animatedtoggle()">
                 <div class="toggle-button"></div>
               </div>
             </div>
-            <div class="show">7 days</div>
-            <div class="disabled">12 months</div>
+            <div class="show">
+              <canvas id="myChart" width="150" height="30"></canvas>
+            </div>
+            <div class="disabled">
+              <canvas id="canvas" width="150" height="30"></canvas>
+            </div>
           </div>
           <!--Bestsellers-->
           <div class="bestsellers-main">
@@ -129,6 +135,7 @@
     <script src="components/summaryCards.js"></script>
     <script src="components/main.js"></script>
     <script src="components/controller.js"></script>
-    <script src="components/chart.js"></script>
+    <script type="text/javascript" src="components/barchart.js"></script>
+    <script type="text/javascript" src="components/barchart2.js"></script>
   </body>
 </html>

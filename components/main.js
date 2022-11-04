@@ -5,9 +5,18 @@ document.title = "Freddy's Artisanal Halloween Candy Shop";
 let toggle = document.querySelector(".toggle");
 let show = document.querySelector(".show");
 let disabled = document.querySelector(".disabled");
+let day = document.getElementById("days");
+let period = document.getElementById("period");
 
 function Animatedtoggle() {
   toggle.classList.toggle("active");
+  if (toggle.classList.contains("active")) {
+    day.innerHTML = 12;
+    period.innerHTML = " months";
+  } else {
+    day.innerHTML = 7;
+    period.innerHTML = " days";
+  }
   if (toggle.classList.contains("active") && show.classList.contains("show")) {
     show.classList.remove("show");
     show.classList.add("disabled");
