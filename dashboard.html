@@ -8,6 +8,7 @@
     <title id="head-title">..</title>
     <link rel="icon" type="image/svg" href="../assets/Freddys_Logo.svg" />
     <!--CSS-->
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -37,8 +38,16 @@
           <div class="dashboard-main">
             <h1>Dashboard</h1>
             <div class="smallcard-main">
-              <summary-card class="smallcard" period="Today"></summary-card>
-              <summary-card class="smallcard" period="Last Year"></summary-card>
+              <summary-card
+                class="smallcard"
+                period="Today"
+                amount="2000"
+              ></summary-card>
+              <summary-card
+                class="smallcard"
+                period="Last Year"
+                amount="2000"
+              ></summary-card>
               <summary-card
                 class="smallcard"
                 period="Last Month"
@@ -120,5 +129,6 @@
     <script src="components/summaryCards.js"></script>
     <script src="components/main.js"></script>
     <script src="components/controller.js"></script>
+    <script src="components/chart.js"></script>
   </body>
 </html>

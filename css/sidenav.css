@@ -180,3 +180,6 @@ cursor: pointer;
 .processing{
     color: red;
 }
+.delivered{
+    color: green;
+}

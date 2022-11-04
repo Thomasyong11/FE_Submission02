@@ -21,8 +21,6 @@ function Animatedtoggle() {
   }
 }
 
-document.getElementById;
-
 //Best sellers table
 //dummy data
 

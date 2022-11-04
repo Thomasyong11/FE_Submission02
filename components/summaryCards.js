@@ -5,7 +5,9 @@ class SummaryCard extends HTMLElement {
 
     this.innerHTML = `<div>
     <span>${this.getAttribute("period")}</span>
-    <div>$1456 <span>/ </span>9 <span>orders</span></div>
+    <div>$${this.getAttribute(
+      "amount"
+    )} <span>/ </span>9 <span>orders</span></div>
   </div>`;
   }
 }

@@ -1,83 +1,83 @@
 async function login(event) {
   event.preventDefault();
-  console.log("bnb");
   const username = "freddy";
   const password = "ElmStreet2019";
   console.log(username);
-  const result = await (
-    await fetch("https://freddy.codesubmit.io/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // mode: "cors",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-  ).json();
-
-  if (result.access_token) {
-    // window.accesstoken = result;
-    // console.log("token", window.accesstoken);
-    // navigate to dashboard
-    window.localStorage.setItem("tokens", JSON.stringify(result));
-    // sessionStorage.setItem("tokens", JSON.stringify(result));
-    window.location.href = "dashboard.html";
-  } else {
-    //alert user and
-    //navigate to home
-    window.alert("wrong credentials");
-    window.location.href = "index.html";
+  try {
+    const result = await (
+      await fetch("https://freddy.codesubmit.io/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // mode: "cors",
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      })
+    ).json();
+    if (result.access_token) {
+      window.localStorage.setItem("tokens", JSON.stringify(result));
+      window.location.href = "dashboard.html";
+    } else {
+      //alert user and
+      //navigate to home
+      window.alert("wrong credentials");
+      window.location.href = "index.html";
+    }
+  } catch (error) {
+    console.log("error", error);
   }
 }
-
+//refresh token function
 async function checkRefreshToken() {
-  // let token = JSON.parse(sessionStorage.getItem("tokens"));
   let token = JSON.parse(window.localStorage.getItem("tokens"));
   const refresh_token = token.refresh_token;
   console.log("first", refresh_token);
-  // console.log("ali", sessionStorage.getItem("tokens"));
   console.log("ali", window.localStorage.getItem("tokens"));
-  // console.log("try", token);
-  const result = await (
-    await fetch("https://freddy.codesubmit.io/refresh", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + refresh_token,
-      },
-    })
-  ).json();
-  window.localStorage.setItem("access_token", JSON.stringify(result));
+  const access_token = token.access_token;
+  var decoded = atob(access_token.split(".")[1]);
+  if (decoded.exp < new Date() / 1000) {
+    const result = await (
+      await fetch("https://freddy.codesubmit.io/refresh", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + refresh_token,
+        },
+      })
+    ).json();
+    // console.log("results", result);
 
-  console.log("fef", JSON.parse(window.localStorage.getItem("tokens")));
+    console.log("fef", JSON.parse(window.localStorage.getItem("tokens")));
+    console.log(decoded);
+
+    const navigate = "/dashboard";
+    window.navigate = navigate;
+  }
+  window.localStorage.setItem("tokens", JSON.stringify(result));
 }
-const navigate = "dashboard";
-window.navigate = navigate;
 
 checkRefreshToken();
 
+//LogOut
 const logout = document.querySelector(".logout");
 
 logout.addEventListener("click", async () => {
   if (!logout) return;
   window.localStorage.removeItem("tokens");
-  // sessionStorage.clear();
   this.window.navigate("index");
 });
 
 //protected routes
-window.protected = async function (parent) {
+async function protectedRoute() {
   if (!window.localStorage.getItem("tokens")) {
     window.alert("not authorized to perform this action");
-    window.location.href = "dashboard.html";
+    location = "/index.html";
     return;
   }
-  // console.log('found:', window.accesstoken);
-  window.navigate("dashboard");
-};
+}
 
 let dataSet = [];
 
@@ -110,13 +110,13 @@ function loadTableData(itemData) {
       item.price ? item.price : ""
     }</td><td>${item.units}</td><td>${item.revenue}</td></tr>`;
   }
-  //   console.log(dataHtml);
   tableBody.innerHTML = dataHtml;
 }
 
 function runOnLoad() {
   dashboard();
   getOrders();
+  protectedRoute();
 }
 window.onload = runOnLoad;
 
@@ -134,22 +134,21 @@ function pageCounter() {
   pagenumber.innerHTML = page;
   searchItems();
 }
+//search functionality
 let search_term = "";
-search_text = document
-  .getElementsByName("search")[0]
-  .addEventListener("change", getSearchTerm);
+search_text = document.addEventListener("keydown", (event) => {
+  getSearchTerm();
+});
 function getSearchTerm() {
   let search_text = document.getElementById("search").value;
   search_term = search_text.toLowerCase();
   console.log("search", search_term);
-  searchItems();
+  getOrders();
 }
 //variable to store order data
 var od;
 
 async function getOrders() {
-  // let token = JSON.parse(sessionStorage.getItem("tokens"));
-
   console.log(page);
   let token = JSON.parse(window.localStorage.getItem("tokens"));
   const access_token = token.access_token;
@@ -184,28 +183,43 @@ async function getOrders() {
 }
 function getDate(date) {
   let sysDate = new Date(date);
-  newDate = sysDate.toDateString();
+  newDate = sysDate.toLocaleDateString();
   return newDate;
 }
 function loadOrderData(itemData) {
   const tableBody = document.getElementById("orderTableData");
-  let tdClass = document.querySelector(".toggle");
-  // let items = itemData.slice(0, 4);
   let dataHtml = "";
   for (let item of itemData) {
     dataHtml += `<tr><td>${
       item.product.name ? item.product.name : ""
     }</td><td>${item.created_at ? getDate(item.created_at) : ""}</td><td>${
       item.price ? item.price : ""
-    }</td><td class="status">${item.status ? item.status : ""}</td></tr>`;
+    }</td><td  class="${item.status}" value="${item.status}">${
+      item.status ? item.status : ""
+    }</td></tr>`;
   }
-  //   console.log(dataHtml);
   tableBody.innerHTML = dataHtml;
+
+  //console.log(dataHtml);
 }
+// const collection = document.getElementsByTagName("td");
+
+// // let arry = [...collection.item];
+
+// var arr = [];
+// [].push.apply(arr, collection);
+// console.log(arr);
+
+// for (let i = 0; i < collection.length; i++) {
+//   if (collection.item(i).innerHTML === "processing") {
+//     collection.item(i).classList.add("processing");
+//   }
+//   // collection.item(i).style.fontSize = "24px";
+// }
 //in order to update the search terms
-function searchItems() {
-  getOrders();
-}
+// function searchItems() {
+//   getOrders();
+// }
 
 // let statusText = document.getElementById(".td").innerHTML;
 
@@ -231,3 +245,6 @@ function searchItems() {
 //   loadTableData(bestsellers);
 //   console.log("data", bestsellers);
 // };
+
+let statusElm = document.getElementsByTagName;
+console.log(statusElm.textContent, "relem");
