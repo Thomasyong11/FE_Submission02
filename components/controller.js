@@ -135,18 +135,15 @@ function pageCounter() {
   searchItems();
 }
 let search_term = "";
-// function getSearchTerm() {
-//   search_input = document.getElementById("search");
-//   search_input.addEventListener("input", (e) => {
-//     search_term = e.target.value;
-//     var filteredOrders = od.filter((order) => console.log("odod", order));
-//     //   order.product.name.toLowercase().includes(search_term.toLowerCase())
-//     // );
-//     loadOrderData(filteredOrders);
-//     searchItems();
-//   });
-//   console.log("dsd", search_term);
-// }
+search_text = document
+  .getElementsByName("search")[0]
+  .addEventListener("change", getSearchTerm);
+function getSearchTerm() {
+  let search_text = document.getElementById("search").value;
+  search_term = search_text.toLowerCase();
+  console.log("search", search_term);
+  searchItems();
+}
 //variable to store order data
 var od;
 
@@ -172,7 +169,17 @@ async function getOrders() {
   orderData.push(data);
   console.log(orderData);
   od = orderData[page - 1].orders;
-  loadOrderData(od);
+  //filter with search term
+  if (search_term) {
+    var filter = od.filter((order) =>
+      order.product.name.toLowerCase().includes(search_term)
+    );
+    loadOrderData(filter);
+    console.log("fil", filter);
+  } else {
+    loadOrderData(od);
+  }
+
   console.log(od);
 }
 function getDate(date) {
@@ -182,6 +189,7 @@ function getDate(date) {
 }
 function loadOrderData(itemData) {
   const tableBody = document.getElementById("orderTableData");
+  let tdClass = document.querySelector(".toggle");
   // let items = itemData.slice(0, 4);
   let dataHtml = "";
   for (let item of itemData) {
@@ -189,7 +197,7 @@ function loadOrderData(itemData) {
       item.product.name ? item.product.name : ""
     }</td><td>${item.created_at ? getDate(item.created_at) : ""}</td><td>${
       item.price ? item.price : ""
-    }</td><td class="td">${item.status ? item.status : ""}</td></tr>`;
+    }</td><td class="status">${item.status ? item.status : ""}</td></tr>`;
   }
   //   console.log(dataHtml);
   tableBody.innerHTML = dataHtml;
@@ -198,6 +206,7 @@ function loadOrderData(itemData) {
 function searchItems() {
   getOrders();
 }
+
 // let statusText = document.getElementById(".td").innerHTML;
 
 // function colorStatus() {

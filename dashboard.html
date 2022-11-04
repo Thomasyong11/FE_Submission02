@@ -79,12 +79,16 @@
             <div class="order-header">
               <h1>Orders</h1>
               <div class="search-items">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i
+                  class="fa fa-search"
+                  aria-hidden="true"
+                  onclick="getSearchTerm()"
+                ></i>
                 <input
                   id="search"
                   class="search-box"
                   type="input"
-                  onclick="getSearchTerm()"
+                  name="search"
                 />
               </div>
             </div>
@@ -118,8 +122,3 @@
     <script src="components/controller.js"></script>
   </body>
 </html>
-
-<!-- function load_home(){
-  document.getElementById("dashboard").innerHTML =
-    '<object type="text/html" data="index.html" ></object>';
-  } -->
